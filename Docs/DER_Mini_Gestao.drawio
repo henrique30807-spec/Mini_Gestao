@@ -1,0 +1,51 @@
+<mxfile host="app.diagrams.net" modified="2026-09-23T22:30:00.000Z" agent="ChatGPT" version="24.7.17" type="device">
+  <diagram id="mini-gestao-der" name="DER Mini_Gestao">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <mxCell id="usuarios" value="&lt;b&gt;USUÁRIOS&lt;/b&gt;&lt;hr&gt;🔑 PK  ID&lt;br&gt;NOME&lt;br&gt;E-MAIL&lt;br&gt;SENHA" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;fontSize=14;align=left;spacingLeft=10;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="80" y="80" width="240" height="150" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="fornecedores" value="&lt;b&gt;FORNECEDORES&lt;/b&gt;&lt;hr&gt;🔑 PK  ID&lt;br&gt;NOME&lt;br&gt;CNPJ" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;fontSize=14;align=left;spacingLeft=10;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="650" y="80" width="240" height="125" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="cestas" value="&lt;b&gt;CESTAS&lt;/b&gt;&lt;hr&gt;🔑 PK  ID&lt;br&gt;🔗 FK  USUARIO_ID&lt;br&gt;NOME" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;fontSize=14;align=left;spacingLeft=10;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="80" y="330" width="240" height="135" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="produtos" value="&lt;b&gt;PRODUTOS&lt;/b&gt;&lt;hr&gt;🔑 PK  ID&lt;br&gt;NOME&lt;br&gt;PRECO&lt;br&gt;🔗 FK  FORNECEDOR_ID" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;fontSize=14;align=left;spacingLeft=10;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="650" y="310" width="240" height="155" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="cesta_produtos" value="&lt;b&gt;CESTA_PRODUTOS&lt;/b&gt;&lt;hr&gt;🔑🔗 PK/FK  CESTA_ID&lt;br&gt;🔑🔗 PK/FK  PRODUTO_ID" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;fontSize=14;align=left;spacingLeft=10;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="365" y="560" width="280" height="125" as="geometry"/>
+        </mxCell>
+
+        <!-- usuarios 1:N cestas -->
+        <mxCell id="rel_uc" value="1 : N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;startArrow=ERone;strokeWidth=2;" edge="1" parent="1" source="usuarios" target="cestas">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- fornecedores 1:N produtos -->
+        <mxCell id="rel_fp" value="1 : N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;startArrow=ERone;strokeWidth=2;" edge="1" parent="1" source="fornecedores" target="produtos">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- cestas 1:N cesta_produtos -->
+        <mxCell id="rel_cp_cestas" value="1 : N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;startArrow=ERone;strokeWidth=2;" edge="1" parent="1" source="cestas" target="cesta_produtos">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- produtos 1:N cesta_produtos -->
+        <mxCell id="rel_cp_produtos" value="1 : N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;startArrow=ERone;strokeWidth=2;" edge="1" parent="1" source="produtos" target="cesta_produtos">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

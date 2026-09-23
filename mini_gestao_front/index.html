@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mini Gestão de Produtos</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div id="login" class="tela">
+      <div class="login-box">
+        <div class="logo">
+          <svg viewBox="0 0 40 40" width="42" height="42">
+            <path d="M20 4 L36 12 L20 20 L4 12 Z"></path>
+            <path d="M4 20 L20 28 L36 20"></path>
+            <path d="M4 28 L20 36 L36 28"></path>
+          </svg>
+        </div>
+        <h2>Sistema de Gestão de Produtos</h2>
+        <p>Faça login para continuar</p>
+
+        <form id="formLogin">
+          <label>E-mail</label>
+          <input
+            type="email"
+            id="loginEmail"
+            class="form-control"
+            placeholder="nome@provedor.com"
+            required
+          />
+
+          <label>Senha</label>
+          <input
+            type="password"
+            id="loginSenha"
+            class="form-control"
+            placeholder="Digite sua senha"
+            required
+          />
+
+          <button type="submit" class="btn btn-primary w-100">Entrar</button>
+        </form>
+
+        <button class="link-button" onclick="mostrarTela('cadastro')">
+          Criar conta
+        </button>
+      </div>
+    </div>
+
+    <div id="cadastro" class="tela d-none">
+      <div class="login-box cadastro-box">
+        <h2>Cadastro de Usuário</h2>
+        <p>Crie sua conta para utilizar o sistema</p>
+
+        <form id="formCadastro">
+          <label>Nome</label>
+          <input
+            type="text"
+            id="cadastroNome"
+            class="form-control"
+            placeholder="Digite seu nome completo"
+            required
+          />
+
+          <label>E-mail</label>
+          <input
+            type="email"
+            id="cadastroEmail"
+            class="form-control"
+            placeholder="exemplo@email.com"
+            required
+          />
+
+          <label>Senha</label>
+          <input
+            type="password"
+            id="cadastroSenha"
+            class="form-control"
+            placeholder="Mínimo 6 caracteres"
+            required
+          />
+
+          <label>Confirmar Senha</label>
+          <input
+            type="password"
+            id="cadastroConfirmar"
+            class="form-control"
+            placeholder="Repita a senha"
+            required
+          />
+
+          <button type="submit" class="btn btn-primary w-100">Cadastrar</button>
+        </form>
+
+        <button class="link-button" onclick="mostrarTela('login')">
+          Voltar para Login
+        </button>
+      </div>
+    </div>
+
+    <div id="sistema" class="d-none">
+      <nav class="navbar navbar-expand-lg bg-white border-bottom">
+        <div class="container-fluid px-4">
+          <span class="navbar-brand fw-bold">
+            <span class="mini-logo">
+              <i></i>
+              <i></i>
+              <i></i>
+            </span>
+            Mini Gestão de Produtos
+          </span>
+
+          <div class="menu">
+            <button onclick="mostrarArea('gestao')" class="menu-btn ativo">
+              Início
+            </button>
+            <button onclick="mostrarArea('produtos')" class="menu-btn">
+              Produtos
+            </button>
+            <button onclick="mostrarArea('fornecedores')" class="menu-btn">
+              Fornecedores
+            </button>
+            <button onclick="mostrarArea('cesta')" class="menu-btn">
+              Cesta
+            </button>
+            <button onclick="sair()" class="menu-btn">Sair</button>
+          </div>
+        </div>
+      </nav>
+
+      <main class="container-fluid p-4">
+        <section id="area-gestao" class="area">
+          <h2>Gestão de Produtos</h2>
+          <p class="subtitulo">
+            Painel principal para cadastro e visualização de dados do protótipo.
+          </p>
+
+          <div class="row g-3">
+            <div class="col-lg-4">
+              <div class="card painel">
+                <h5>Cadastro de Produto</h5>
+
+                <label>Nome do Produto</label>
+                <input
+                  type="text"
+                  id="nomeProduto"
+                  class="form-control"
+                  placeholder="Ex: Mouse sem fio"
+                />
+
+                <label>Preço</label>
+                <input
+                  type="number"
+                  id="precoProduto"
+                  class="form-control"
+                  placeholder="R$ 0,00"
+                />
+
+                <label>Fornecedor</label>
+                <select id="fornecedorProduto">
+                  <option value="">Selecione um fornecedor</option>
+                  <option value="1">Fornecedor Teste</option>
+                  <option value="2">Fornecedor Dois</option>
+                  <option value="3">Fornecedor Três</option>
+                </select>
+
+                <button
+                  class="btn btn-primary w-100"
+                  onclick="cadastrarProduto()"
+                >
+                  Cadastrar Produto
+                </button>
+              </div>
+            </div>
+
+            <div class="col-lg-4">
+              <div class="card painel">
+                <h5>Cadastro de Fornecedor</h5>
+
+                <label>Razão Social / Nome</label>
+                <input
+                  type="text"
+                  id="nomeFornecedor"
+                  class="form-control"
+                  placeholder="Ex: Distribuidora XPTO"
+                />
+
+                <label>CNPJ</label>
+                <input
+                  type="text"
+                  id="cnpjFornecedor"
+                  class="form-control"
+                  placeholder="00.000.000/0000-00"
+                />
+
+                <button
+                  class="btn btn-primary w-100 fornecedor-btn"
+                  onclick="cadastrarFornecedor()"
+                >
+                  Cadastrar Fornecedor
+                </button>
+              </div>
+            </div>
+
+            <div class="col-lg-4">
+              <div class="card painel">
+                <h5>Nova Cesta de Compras</h5>
+
+                <label>Nome da Cesta</label>
+                <input
+                  type="text"
+                  id="nomeCesta"
+                  class="form-control"
+                  placeholder="Ex: Cesta de TI - Setor A"
+                />
+
+                <button
+                  class="btn btn-primary w-100 cesta-btn"
+                  onclick="criarCesta()"
+                >
+                  Criar Cesta
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card tabela-card mt-3">
+            <h5>Produtos Cadastrados</h5>
+            <div class="table-responsive">
+              <table class="table mb-0">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Preço</th>
+                    <th>Fornecedor</th>
+                    <th>Ações</th>
+                  </tr>
+                </thead>
+                <tbody id="tabelaProdutos">
+                  <tr>
+                    <td>001</td>
+                    <td>Notebook Dell Inspiron</td>
+                    <td>R$ 3.499,00</td>
+                    <td>Dell Brasil</td>
+                    <td>
+                      <button class="acao" onclick="editarProduto(this)">
+                        Editar
+                      </button>
+                      <button
+                        class="acao excluir"
+                        onclick="excluirProduto(this)"
+                      >
+                        Excluir
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>002</td>
+                    <td>Mouse Sem Fio Logitech M280</td>
+                    <td>R$ 89,90</td>
+                    <td>Logitech Store</td>
+                    <td>
+                      <button class="acao">Editar</button>
+                      <button class="acao excluir">Excluir</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>003</td>
+                    <td>Teclado Mecânico Keychron</td>
+                    <td>R$ 249,90</td>
+                    <td>Keychron Off</td>
+                    <td>
+                      <button class="acao">Editar</button>
+                      <button class="acao excluir">Excluir</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section id="area-produtos" class="area d-none">
+          <h2>Selecionar Produtos</h2>
+          <p class="subtitulo">
+            Marque os itens que deseja vincular à sua cesta ativa.
+          </p>
+
+          <div id="mensagemProdutos" class="alert alert-danger d-none">
+            Selecione ao menos um produto.
+          </div>
+
+          <div class="card tabela-card">
+            <h5>Catálogo de Produtos Disponíveis</h5>
+            <div class="table-responsive">
+              <table class="table mb-0">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>Nome</th>
+                    <th>Fornecedor</th>
+                    <th>Preço</th>
+                  </tr>
+                </thead>
+                <tbody id="tabelaSelecaoProdutos">
+                  <tr>
+                    <td>
+                      <input
+                        type="checkbox"
+                        class="produto-check"
+                        data-nome="Notebook Dell Inspiron"
+                        data-preco="3499"
+                      />
+                    </td>
+                    <td>Notebook Dell Inspiron</td>
+                    <td>Dell Brasil</td>
+                    <td>R$ 3.499,00</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input
+                        type="checkbox"
+                        class="produto-check"
+                        data-nome="Mouse Sem Fio Logitech M280"
+                        data-preco="89.90"
+                      />
+                    </td>
+                    <td>Mouse Sem Fio Logitech M280</td>
+                    <td>Logitech Store</td>
+                    <td>R$ 89,90</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input
+                        type="checkbox"
+                        class="produto-check"
+                        data-nome="Teclado Mecânico Keychron"
+                        data-preco="249.90"
+                      />
+                    </td>
+                    <td>Teclado Mecânico Keychron</td>
+                    <td>Keychron Off</td>
+                    <td>R$ 249,90</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input
+                        type="checkbox"
+                        class="produto-check"
+                        data-nome="Monitor LG IPS 24"
+                        data-preco="899.90"
+                      />
+                    </td>
+                    <td>Monitor LG IPS 24"</td>
+                    <td>LG Representações</td>
+                    <td>R$ 899,90</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <button class="btn btn-primary mt-3" onclick="adicionarCesta()">
+            Adicionar à Cesta
+          </button>
+          <button
+            class="btn btn-outline-primary mt-3"
+            onclick="mostrarArea('gestao')"
+          >
+            Voltar
+          </button>
+        </section>
+
+        <section id="area-fornecedores" class="area d-none">
+          <h2>Fornecedores</h2>
+          <p class="subtitulo">Fornecedores cadastrados no sistema.</p>
+
+          <div class="card tabela-card">
+            <table class="table mb-0">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nome</th>
+                  <th>CNPJ</th>
+                </tr>
+              </thead>
+              <tbody id="tabelaFornecedores"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="area-cesta" class="area d-none">
+          <h2>Minha Cesta</h2>
+          <p class="subtitulo">Resumo dos itens selecionados.</p>
+
+          <div class="card tabela-card">
+            <h5>Itens na Cesta Ativa</h5>
+
+            <div class="table-responsive">
+              <table class="table mb-0">
+                <thead>
+                  <tr>
+                    <th>Produto</th>
+                    <th>Fornecedor</th>
+                    <th>Preço</th>
+                    <th>Quantidade</th>
+                  </tr>
+                </thead>
+                <tbody id="tabelaCesta"></tbody>
+              </table>
+            </div>
+
+            <div class="resumo">
+              <div>
+                Total de produtos: <strong id="totalProdutos">0</strong>
+              </div>
+              <div>
+                Valor total:
+                <strong class="total" id="valorTotal">R$ 0,00</strong>
+              </div>
+            </div>
+          </div>
+
+          <button
+            class="btn btn-outline-primary mt-3"
+            onclick="mostrarArea('produtos')"
+          >
+            Voltar para Produtos
+          </button>
+        </section>
+      </main>
+    </div>
+
+    <div id="toast" class="mensagem"></div>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
