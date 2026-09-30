@@ -209,4 +209,4 @@ Nome	RA
 Henrique Leite Firmino 60005715
 
 Figma
-Protótipo/interface do sistema: https://www.figma.com/design/N62RgJn5iR9otEBkRzJLRk/MINI-GEST%C3%83O-DE-PRODUTOS?node-id=0-1&t=FVAXKZ6P7UOjfTrj-1
+Protótipo/interface do sistema: https://www.figma.com/proto/N62RgJn5iR9otEBkRzJLRk/MINI-GEST%C3%83O-DE-PRODUTOS?node-id=0-1&t=PXekrh9FrACGMLHs-1
